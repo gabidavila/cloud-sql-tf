@@ -2,9 +2,9 @@ resource "google_sql_database" "database" {
   provider = google
 
   name = var.schema
-
-  charset    = "utf8mb4"
-  collation  = "utf8mb4_0900_ai_ci"
+  #
+  # charset    = "utf8mb4"
+  # collation  = "utf8mb4_0900_ai_ci"
   depends_on = [google_sql_database_instance.primary, google_sql_user.users]
   instance   = google_sql_database_instance.primary.name
 }
@@ -12,9 +12,10 @@ resource "google_sql_database" "database" {
 resource "google_sql_database_instance" "primary" {
   provider = google
 
-  name             = "store-${random_id.db_name_suffix.hex}"
-  region           = var.resources.database.region
-  database_version = var.resources.database.version
+  name                = "store-${random_id.db_name_suffix.hex}"
+  region              = var.resources.database.region
+  database_version    = var.resources.database.version
+  deletion_protection = false
 
   settings {
     tier = var.resources.database.instance_type
