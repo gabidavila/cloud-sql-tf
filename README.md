@@ -1,4 +1,4 @@
-# Google Cloud Platform for Magento
+# Google Cloud Platform Cloud SQL on Terraform
 
 ## Requirements
 
